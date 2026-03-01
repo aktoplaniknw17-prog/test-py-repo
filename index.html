@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Hospital - Patient Check-In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sunrise Hospital - Patient Registration</h1>
+        <form id="checkInForm">
+            <!-- Patient Identification Section -->
+            <fieldset>
+                <legend>Patient Details</legend>
+                <label for="patientID">Patient ID:</label>
+                <input type="text" id="patientID" name="patientID" required placeholder="Enter Patient ID">
+                
+                <label for="fullName">Full Name:</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter Full Name">
+                
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+            </fieldset>
+
+            <!-- Medical History Section -->
+            <fieldset>
+                <legend>Medical History</legend>
+                <label for="allergies">Allergies:</label>
+                <textarea id="allergies" name="allergies" placeholder="Enter allergies (if any)"></textarea>
+                
+                <label for="medications">Current Medications:</label>
+                <textarea id="medications" name="medications" placeholder="Enter current medications (if any)"></textarea>
+                
+                <label for="conditions">Past Conditions/Surgeries:</label>
+                <textarea id="conditions" name="conditions" placeholder="Enter past conditions or surgeries"></textarea>
+            </fieldset>
+
+            <!-- Appointment Details Section -->
+            <fieldset>
+                <legend>Appointment Information</legend>
+                <label for="appointmentDate">Date of Appointment:</label>
+                <input type="date" id="appointmentDate" name="appointmentDate" required>
+                
+                <label for="appointmentTime">Time of Appointment:</label>
+                <input type="time" id="appointmentTime" name="appointmentTime" required>
+                
+                <label for="department">Department/Specialist:</label>
+                <select id="department" name="department" required>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="orthopedics">Orthopedics</option>
+                    <option value="pediatrics">Pediatrics</option>
+                </select>
+                
+                <label for="reason">Reason for Visit:</label>
+                <textarea id="reason" name="reason" required placeholder="Enter reason for your visit"></textarea>
+            </fieldset>
+
+            <!-- Insurance Information Section -->
+            <fieldset>
+                <legend>Insurance Details</legend>
+                <label for="insuranceProvider">Insurance Provider:</label>
+                <input type="text" id="insuranceProvider" name="insuranceProvider" required placeholder="Enter Insurance Provider">
+                
+                <label for="policyNumber">Policy Number:</label>
+                <input type="text" id="policyNumber" name="policyNumber" required placeholder="Enter Policy Number">
+                
+                <label for="copay">Co-Pay Amount:</label>
+                <input type="number" id="copay" name="copay" required step="0.01" placeholder="Enter Co-Pay Amount">
+            </fieldset>
+
+            <!-- Emergency Contact Information Section -->
+            <fieldset>
+                <legend>Emergency Contact</legend>
+                <label for="emergencyContactName">Emergency Contact Name:</label>
+                <input type="text" id="emergencyContactName" name="emergencyContactName" required placeholder="Enter Emergency Contact Name">
+                
+                <label for="relationship">Relationship to Patient:</label>
+                <input type="text" id="relationship" name="relationship" required placeholder="Enter Relationship to Patient">
+                
+                <label for="emergencyContactPhone">Emergency Contact Phone:</label>
+                <input type="tel" id="emergencyContactPhone" name="emergencyContactPhone" required placeholder="Enter Emergency Contact Phone">
+            </fieldset>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Simple Frontend Validation and Form Handling
+        document.getElementById('checkInForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from submitting normally
+
+            // Retrieve Patient ID
+            const patientID = document.getElementById('patientID').value;
+
+            // Simulate checking if PatientID already exists (in a real app, this would be done via an API call to the server)
+            const existingPatientIDs = ['P123', 'P456', 'P789']; // Example of existing IDs
+
+            if (existingPatientIDs.includes(patientID)) {
+                alert('Patient ID already exists. Please enter a unique ID.');
+                return; // Stop the form submission
+            }
+
+            // Simulate form data submission
+            const formData = new FormData(document.getElementById('checkInForm'));
+            const formObject = {};
+            formData.forEach((value, key) => { formObject[key] = value });
+
+            console.log('Form Data Submitted:', formObject);  // You would send this to your server here
+
+            alert('Form submitted successfully!');  // Simulating a successful submission
+
+            // Reset the form after submission
+            document.getElementById('checkInForm').reset();
+        });
+    </script>
+</body>
+</html>
